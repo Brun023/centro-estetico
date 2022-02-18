@@ -44,7 +44,7 @@ struct turnos
 	char progreso[380];
 };
 
-int dibujarMenu();
+int Menu();
 bool iniciarse(FILE *f, int &IdProfesional);
 void lista(FILE *f);
 bool evolucion(FILE *f);
@@ -69,7 +69,7 @@ main()
 	int opc;
 	do
 	{
-		opc = dibujarMenu();
+		opc = Menu();
 		switch(opc)
 		{
 			case 1:	
@@ -83,7 +83,7 @@ main()
 			}
 			else
 			{
-				printf("\nPrimero debe Iniciar sesion!\n");
+				printf("\n Primero debe Iniciar sesion\n");
 			}
 			break;
 					 
@@ -94,7 +94,7 @@ main()
 			}
 			else
 			{
-				printf("\nPrimerio debe Iniciar sesion!\n");
+				printf("\n Primero debe Iniciar sesion\n");
 			}
 			if(borrar == true) incontador(PROFESIONALES, IdProfesional);
 			break;			 
@@ -109,13 +109,14 @@ main()
 	fclose(PROFESIONALES);
 }
 
-int dibujarMenu(){
+int Menu()
+{
 	system("cls");
 	printf("\n\t\t\t Modulo Espacios");
 	printf("\n\t\t\t ========================");
 	printf("\n\t\t\t 1.- Iniciar Sesion.");
 	printf("\n\t\t\t 2.- Visualizar lista de turnos (informe).");	
-	printf("\n\t\t\t 3.- Mostrar evolucion del tratamiento.");
+	printf("\n\t\t\t 3.- Mostrar evolucion del tratamiento.\n");
 	printf("\n\t\t\t 4.- Cerrar la aplicacion. \n");
 	printf("\n\t\t\t Ingrese una opcion: ");
 	int opc;
@@ -133,13 +134,13 @@ bool iniciarse(FILE *f, int &IdProfesional)
 	
 	do
 	{
-		printf("- Ingrese numero de matricula: ");
+		printf("\n - Ingrese numero de matricula: ");
 		scanf("%d", &log.Matricula);
 	}
 	while (log.Matricula >= 9999);
 	IdProfesional = log.Matricula;
 
-	printf("\n- Ingrese contrasena: ");
+	printf("\n - Ingrese la contrasena: ");
 	_flushall();
 	gets(log.contra);
 	
@@ -152,15 +153,15 @@ bool iniciarse(FILE *f, int &IdProfesional)
 		{
 			if(valor == 0)
 			{	
-				printf("\n\n -Sesion iniciada correctamente-\n\n");
-				printf(" -Bienvenido/a %s!\n\n", p.ApellidoyNombre);
+				printf("\n Sesion iniciada correctamente \n");
+				printf("- Bienvenido/a %s \n\n", p.ApellidoyNombre);
 				iniciado = true;
 			}
 
 		}
         fread(&p, sizeof(prof), 1, f);
     }
-    if(iniciado == false) printf("\n\nEl nombre de usuario y/o contrasena no coinciden\n\n");
+    if(iniciado == false) printf("\n\n El nombre de usuario y/o contrasena no coinciden\n\n");
     return iniciado;
 }
 
@@ -179,13 +180,12 @@ void lista(FILE *f)
 		nada = strcmp(tur.progreso, "");
 
 		if(nada == 0)
-		{	printf("*Lista de espera de turnos*\n\n");
-			printf("--------------------------------\n");
-			printf("\n-Turno %d:\n\n", c+1);
+		{	printf("Lista de turnos en espera: \n\n");
+			printf("\n - Turno %d:\n\n", c+1);
 
-			printf("\n-Matricula del profesional --> %d\n", tur.IdProfesional);
-			printf("\n-Fecha --> %d/%d/%d\n",tur.fec.dia, tur.fec.mes, tur.fec.anio);
-			printf("\n-DNI(dueno) --> %d\n", tur.DNIc);
+			printf("\n - Matricula del profesional: %d", tur.IdProfesional);
+			printf("\n - Fecha: %d/%d/%d",tur.fec.dia, tur.fec.mes, tur.fec.anio);
+			printf("\n - DNI(dueno): %d", tur.DNIc);
 			fread(&tur, sizeof(turnos), 1, f);
 		}
 		else fread(&tur, sizeof(turnos), 1, f);;
@@ -203,14 +203,15 @@ bool evolucion(FILE *f)
 	int dni, dia, mes, anio;
 
 
-	printf("Ingrese DNI -> ");
+	printf("Ingrese: DNI:  ");
+	printf("\n DNI:  ");
 	scanf("%d",&dni);
-	printf("\nFecha de atencion\n");
-	printf("\n-Dia: ");
+	printf("\n Fecha de atencion");
+	printf("\n - Dia: ");
 	scanf("%d",&dia);
-	printf("\n-Mes: ");
+	printf("\n - Mes: ");
 	scanf("%d",&mes);
-	printf("\n-Anio: ");
+	printf("\n - Anio: ");
 	scanf("%d",&anio);
 	
 	system("cls");
@@ -220,7 +221,7 @@ bool evolucion(FILE *f)
 	{
 		if(dni == tur.DNIc && dia == tur.fec.dia && mes == tur.fec.mes && anio == tur.fec.anio)
 		{
-			printf("- Detalle de atencion:\n\n-");
+			printf("\n - Detalle de atencion:");
 			_flushall();
 			gets(tur.progreso);
 			borrar = true;
@@ -233,10 +234,10 @@ bool evolucion(FILE *f)
 		} 
 		fread(&tur, sizeof(turnos), 1, f);
 	}
-	if(borrar == true) printf("\n\n -Evolucion registrada-\n\n");
+	if(borrar == true) printf("\n - Evolucion registrada \n");
 		
 
-	else printf("\n\n -Evolucion no registrada- \n\n");
+	else printf("\n - Evolucion no registrada");
 	
 	fclose(f);
 	fclose(auxtur);

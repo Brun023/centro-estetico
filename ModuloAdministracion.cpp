@@ -24,7 +24,7 @@ struct recep
 int Menu();
 void regrecep(bool &admin);
 void regprofesionales();
-bool checklogin();
+bool verificarIniciodeSesion();
 void atencion();
 void ranking();
 
@@ -40,24 +40,24 @@ main()
 		{
 			case 1:
 			system("cls");
-			login = checklogin();
+			login = verificarIniciodeSesion();
 			if(login == true)
 			{
-				printf("\n -Sesion iniciada correctamente- \n\n");
+				printf("\n Sesion iniciada correctamente \n\n");
 				system("pause");
 				system("cls");
 				regprofesionales();
 			}
 			else
 			{
-				printf("\nLoguearse es requerido para esta accion!\n\n");
+				printf("\n Registrarse es requerido para esta accion\n\n");
 			}
 			break;
 					 
 			case 2:
 			if(admin == true)
 			{
-				login = checklogin();
+				login = verificarIniciodeSesion();
 				if(login == true) regrecep(admin);
 			}
 			else
@@ -68,33 +68,33 @@ main()
 					 
 			case 3:	
 			system("cls");
-			login = checklogin();
+			login = verificarIniciodeSesion();
 			if(login == true)
 			{
-				printf("\n -Sesion iniciada correctamente- \n\n");
+				printf("\n Sesion iniciada correctamente \n\n");
 				system("pause");
 				system("cls");
 				atencion();
 			}
 			else
 			{
-				printf("\nLoguearse es requerido para esta accion!\n\n");
+				printf("\n Registrarse es requerido para esta accion\n\n");
 			}
 			break;
 					 
 			case 4:
 			system("cls");
-			login = checklogin();
+			login = verificarIniciodeSesion();
 			if(login == true)
 			{
-				printf("\n -Sesion iniciada correctamente- \n\n");
+				printf("\n Sesion iniciada correctamente \n\n");
 				system("pause");
 				system("cls");
 				ranking();
 			}
 			else
 			{
-				printf("\nLoguearse es requerido para esta accion!\n\n");
+				printf("\n Registrarse es requerido para esta accion\n\n");
 			}
             break;
 		}
@@ -132,17 +132,16 @@ void regrecep(bool &admin)
 	system("cls");
 	if(admin == false)
 	{
-		printf("*CREAR ADMINISTRADOR*\n\n\n");
+		printf("\n CREAR USUARIO DEL ADMINISTRADOR: \n\n");
 		admin = true;
-		system("pause");
 	}
 	do
 	{
 		do
-		{	system("cls");
-			printf("\t\t\tCONDICIONES:\n\n");
-			printf("-> Entre 6 y 10 caracteres\n\n-> Letras, numeros, simbolos (+,-,/,*,?,�,!,�)\n\n-> Comenzar con letra minuscula\n\n-> Tener al menos 2 letras mayusculas\n\n-> Tener como maximo 3 digitos\n");
-			printf("\n\nIngrese nombre de usuario ->  ");
+		{	
+			printf("\t\tCONDICIONES:\n\n");
+			printf(" - Entre 6 y 10 caracteres\n - Letras, numeros, simbolos (+,-,/,*,?,�,!,�)\n - Comenzar con letra minuscula\n - Tener al menos 2 letras mayusculas\n - Tener como maximo 3 digitos\n");
+			printf("\n\n Ingrese un nombre de usuario: ");
 			_flushall();	
 			gets(us.username);
 			if(strlen(us.username)>= 6 && strlen(us.username) <= 10)
@@ -165,7 +164,7 @@ void regrecep(bool &admin)
 							{
 								u = true;
 							}
-						 }
+						}
 					}
 				}
 			}
@@ -175,12 +174,13 @@ void regrecep(bool &admin)
 		int cmin=0, cmay=0, cnum=0, a, b, c1, lon1;
 		bool ecar=false, econs=false, error=false, eletconsec=false;
 		system("cls");
-		printf("\t\t\tCONDICIONES PARA CONTRASENA");
-		printf("\n\n-> Contener al menos una letra mayuscula, una minuscula y un numero\n\n-> No contener ningun caracter de puntuacion, ni acentos, ni espacios\n\n-> Solo contener caracteres alfanumericos\n\n-> Tener entre 6 y 32 caracteres\n\n-> No tener mas de 3 caracteres consecutivos\n\n-> No tener 2 caracteres consecutivos que refieran a letras alfabeticamente consecutivas (ascendentemente)\n");
+		printf("\n CREAR CONTRASENA:\n\n");
+		printf("\t\tCONDICIONES: ");
+		printf("\n - Contener al menos una letra mayuscula, una minuscula y un numero\n - No contener ningun caracter de puntuacion, ni acentos, ni espacios\n - Solo contener caracteres alfanumericos\n - Tener entre 6 y 32 caracteres\n - No tener mas de 3 caracteres consecutivos\n - No tener 2 caracteres consecutivos que refieran a letras alfabeticamente consecutivas (ascendentemente)\n");
 		_flushall();
 		do
 		{	
-			printf("\n- Ingrese su Contrasena: ");
+			printf("\n Ingrese una contrasena: ");
 			gets(contra);
 			lon1 = strlen(contra);
             strcpy(auxc,contra);
@@ -229,32 +229,32 @@ void regrecep(bool &admin)
                 }
                 if (cmin==1)
                 {
-                    printf("\nDebe tener al menos una letra minuscula!!\n");
+                    printf("\n Debe tener al menos una letra minuscula");
                     error=true;
                 }
                 if (cmay<1)
                 {
-                    printf("\nDebe tener al menos una letra minuscula!!\n");
+                    printf("\n Debe tener al menos una letra minuscula");
                     error=true;
                 }
                 if (cnum<1)
                 {
-                    printf("\nDEBE TENER AL MENOS 1 NUMERO!!\n");
+                    printf("\n Debe tener al menos 1 numero");
                     error=true;
                 }
                 if(ecar==true)
                 {
-                    printf("\nDEBE CONTENER SOLO CARACTERES ALFANUMERICOS!!\n");
+                    printf("\n Debe contener solo caracteres alfanumericos");
                     error=true;
                 }
                 if (econs==true)
                 {
-                    printf("\nNO DEBE TENER MAS DE 3 NUMEROS CONSECUTIVOS!!\n");
+                    printf("\n No debe tener mas de 3 numeros consecutivos");
                     error=true;                
                 }
                 if (eletconsec==true)
                 {
-                    printf("\nNO DEBE TENER LETRAS CONSECUTIVAS!!\n");
+                    printf("\n No debe tener letras consecutivas ");
                     error=true;
                 }
             }
@@ -265,13 +265,13 @@ void regrecep(bool &admin)
         if (error==false)
         {       
             strcpy(us.password, contra);
-            printf("\n- Ingrese el apellido y nombre: ");        
+            printf("\n Ingrese el apellido y nombre: ");        
             _flushall();
             gets(us.ApellidoyNombre);
 			fwrite(&us, sizeof(recep), 1, RECEP);
             do
 			{
-                printf("\n- Desea agregar otro usuario? (SI:1 , NO:0): ");
+                printf("\n Desea agregar otro usuario (SI:1 , NO:0): ");
                 scanf("%d" ,&x);
             }
 			while (x!=0 && x!=1);
@@ -293,12 +293,12 @@ void regprofesionales()
 	{
 		do
 		{
-			printf("-> Ingrese  el ID Profesional(max. 4 digitos): ");
+			printf("\n Ingrese  la matricula del profesional (max. 4 digitos): ");
 			scanf("%d", &profesional.IdProfesional);
 		}
 		while(profesional.IdProfesional > 9999);
 
-		printf("\n-> Ingrese celular: ");
+		printf("\n Ingrese el numero de celular: ");
 		_flushall();
 		gets(profesional.Telefono);
 		
@@ -308,12 +308,12 @@ void regprofesionales()
 		
 		system("cls");
 		printf("\t\t\tCONDICIONES PARA CONTRASENA");
-		printf("\n\n-> Contener al menos una letra mayuscula, una minuscula y un numero\n\n-> No contener ningun caracter de puntuacion, ni acentos, ni espacios\n\n-> Solo contener caracteres alfanumericos\n\n-> Tener entre 6 y 32 caracteres\n\n-> No tener mas de 3 caracteres consecutivos\n\n-> No tener 2 caracteres consecutivos que refieran a letras alfabeticamente consecutivas (ascendentemente)\n");
+		printf("\n\n - Contener al menos una letra mayuscula, una minuscula y un numero\n\n - No contener ningun caracter de puntuacion, ni acentos, ni espacios\n - Solo contener caracteres alfanumericos\n - Tener entre 6 y 32 caracteres\n - No tener mas de 3 caracteres consecutivos\n - No tener 2 caracteres consecutivos que refieran a letras alfabeticamente consecutivas (ascendentemente)\n");
 		_flushall();
 		
 		do
 		{	
-			printf("\nIngrese su contrasena ->  ");
+			printf("\n Ingrese una contrasena:  ");
 			gets(contra);
 			lon1 = strlen(contra);
             strcpy(auxc,contra);
@@ -356,40 +356,40 @@ void regprofesionales()
                         b=a+1;
                         if(auxc[i+1]==b)
                         {
-                            printf("\nLetra 1: %c",auxc[i]);
-                            printf("\nLetra: %c",auxc[i+1]);
+                            printf("\n Letra 1: %c",auxc[i]);
+                            printf("\n Letra: %c",auxc[i+1]);
                             eletconsec=true;
                         }
                     }               
                 }			
                 if (cmin==1)
                 {
-                    printf("\nDebe tener al menos una letra minuscula!!\n");
+                    printf("\n Debe tener al menos una letra minuscula");
                     error=true;
                 }
                 if (cmay<1)
                 {
-                    printf("\nDebe tener al menos una letra minuscula!!\n");
+                    printf("\n Debe tener al menos una letra minuscula");
                     error=true;
                 }
                 if (cnum<1)
                 {
-                    printf("\nDEBE TENER AL MENOS 1 NUMERO!!\n");
+                    printf("\n Debe tener al menos 1 numero");
                     error=true;
                 }
                 if(ecar==true)
                 {
-                    printf("\nDEBE CONTENER SOLO CARACTERES ALFANUMERICOS!!\n");
+                    printf("\n Debe contener solo caracteres alfanumericos");
                     error=true;
                 }
                 if (econs==true)
                 {
-                    printf("\nNO DEBE TENER MAS DE 3 NUMEROS CONSECUTIVOS!!\n");
+                    printf("\n No deber tener mas de 3 numeros consecutivos");
                     error=true;                
                 }
                 if (eletconsec==true)
                 {
-                    printf("\nNO DEBE TENER LETRAS CONSECUTIVAS!!\n");
+                    printf("\n No debe tener letras consecutivas");
                     error=true;
                 }     
             }
@@ -401,13 +401,13 @@ void regprofesionales()
         {       
         	profesional.atendidos = 0;
             strcpy(profesional.password, contra);
-            printf("\n- Ingrese el apellido y nombre: ");        
+            printf("\n - Ingrese el apellido y nombre: ");        
             _flushall();
             gets(profesional.ApellidoyNombre);
 			fwrite(&profesional, sizeof(prof), 1, profesionales);
             do
 			{
-                printf("\n- Desea agregar otro Profesional ? (SI:1 , NO:0): ");
+                printf("\n - Desea agregar otro Profesional (SI:1 , NO:0): ");
                 scanf("%d" ,&x);
             }
 			while (x!=0 && x!=1);
@@ -418,7 +418,7 @@ void regprofesionales()
 	fclose(profesionales);
 }
 
-bool checklogin()
+bool verificarIniciodeSesion()
 {
 	recep check;
 	int valor, valor2;
@@ -427,17 +427,17 @@ bool checklogin()
 	FILE *RECEP = fopen("recep.dat", "rb");
 	if(RECEP == NULL)
 	{
-		printf("\nusuarios. dat no ha sido creado\n\n");
+		printf("\n usuarios. dat no ha sido creado\n\n");
 		system("pause");
 		exit(1);
 	}
 	system("cls");
-	printf("* Inicio de Sesion:* \n\n");
-	printf("- Ingrese nombre de usuario: ");
+	printf("\n Inicio de Sesion:");
+	printf("\n - Ingrese el nombre de usuario: ");
 	_flushall();
 	gets(usu);
 	
-	printf("\n- Ingrese contrasena: ");
+	printf("\n - Ingrese la contrasena: ");
 	gets(pass);
 	
 	fread(&check, sizeof(recep), 1, RECEP);
@@ -468,7 +468,7 @@ void atencion()
 	{
 		printf("Id Profesional: %d\n", reg.IdProfesional);
 		printf("PROFESIONAL : %s\n", reg.ApellidoyNombre);
-		printf("Cantidad de atenciones: %d\n\n\n", reg.atendidos);
+		printf("Cantidad de atenciones: %d\n\n", reg.atendidos);
 
 		fread(&reg, sizeof(prof), 1, f);
 	}
